@@ -1,7 +1,11 @@
+// C++ program to implement recursive Binary Search
 #include<iostream>
 
 using namespace std;
 
+// A recursive binary search function. It returns 
+// location of x in given array arr[l..r] is present, 
+// otherwise -1 
 int recursive_binary_search(int arr[],int L, int R, int val)
 {
     int mid = (L+R)/2;
