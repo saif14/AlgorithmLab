@@ -1,10 +1,12 @@
 #include<iostream>
 
 using namespace std;
-int MyFun()
-{
-    
-}
+/*
+    function for carrying out binary search on given array
+    - values[] => given sorted array
+    - len => length of the array
+    - target => value to be searched
+*/
 int recursive_binary_search(int arr[],int L, int R, int val)
 {
     int mid = (L+R)/2;
