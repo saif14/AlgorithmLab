@@ -16,12 +16,12 @@ int recursive_binary_search(int arr[],int L, int R, int val)
         }
         else if(val> arr[mid])
         {
-            L = mid+1;
+            L = mid++;
             recursive_binary_search(arr,L,R,val);
         }
         else if(val<arr[mid])
         {
-            R = mid-1;
+            R = mid--;
             recursive_binary_search(arr,L,R,val);
         }
     }
@@ -43,11 +43,11 @@ int iterative_binary_search(int arr[],int L, int R, int val)
         }
         else if(val<arr[mid])
         {
-            R = mid-1;
+            R = mid--;
         }
         else if(val> arr[mid])
         {
-            L = mid+1;
+            L = mid++;
         }
     }
     return -1;
