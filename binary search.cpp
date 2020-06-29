@@ -2,8 +2,7 @@
 
 using namespace std;
 int MyFun()
-{
-    
+{  
 }
 int recursive_binary_search(int arr[],int L, int R, int val)
 {
@@ -64,3 +63,4 @@ int main()
     (index ==-1)? cout<<"element not found" : cout<<"element found. index is: "<<index<<endl;
 
 }
+//rizvy
