@@ -53,7 +53,7 @@ int iterative_binary_search(int arr[],int L, int R, int val)
     return -1;
 
 }
-
+//this is main function 
 int main()
 {
     int arr[] = {22,25,28,32,37,43,55,61,76,83,87,92,102,104};
