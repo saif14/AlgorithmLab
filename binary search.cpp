@@ -1,5 +1,4 @@
 I try to my best for learning github
-Now I am trying and trying.I am not a victim I am a victor and my present situation does not define my potential destination.....
 #include <iostream>
 using namespace std;
 
