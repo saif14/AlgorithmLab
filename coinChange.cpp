@@ -12,20 +12,19 @@ int findMaxCoin(int amount, int size){
     return -1;
 }
 
-//This the greedy approach implementation.
+
 //This finds the selected coins to fulfill an amount
 int GreedyApproachCoinChagne(int amount, int change[]){
 
     int numOfCoins = sizeof(coins)/sizeof(coins[0]);
     int count = 0;
-    while(//impelemnt the loop condition){
+    while(amount){
         int k = findMaxCoin(amount, numOfCoins);
         if(k == -1)
-                //implement your code
-                //implement what should it print if solution found
+                 printf("No solution");
         else{
-                //Implement your code to minus a coin from the total amount. If total amount is 60 and a coin chosen is 15 then it will be 60-15 = 45
-                // Implement your code to save this coin in the array name 'change'
+               amount-= coins[k];
+        change[count++] = coins[k];
             }
     }
     return count;
