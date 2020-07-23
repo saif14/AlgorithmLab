@@ -1,15 +1,55 @@
 #include<bits/stdc++.h>
+#include <iostream>
 
 using namespace std;
 
-int main()
+int coins[] = { 1,5,10,25,100 };
+
+
+int findMaxCoin(int amount, int size)
 {
-   int itemWeight[4] = {2,3,4,5};
-   int itemValue[4] = {3,4,5,6};
-   int bagMaxWeight = 6;
+    for(int i=0; i<size; i++)
+    {
+        if(amount < coins[i])
+            return i-1;
+    }
+    return -1;
+}
 
-   //implement your code
-   //you may use your own defined function
-   //print out the table filled up with values as I have demonstrated in the class
 
+int GreedyApproachCoinChagne(int amount, int change[])
+{
+
+    int numOfCoins = sizeof(coins)/sizeof(coins[0]);
+    int count = 0;
+    while(amount )
+    {
+        int k = findMaxCoin(amount, numOfCoins);
+        if(k == -1)
+        {
+            cout<<"No";
+        }
+        else
+        {
+
+            amount=amount - coins[k];
+            change[count++]=coins[k];
+
+        }
+    }
+    return count;
+}
+
+int main(void)
+{
+    int change[10];
+    int amount = 34;
+    int count = GreedyApproachCoinChagne(amount, change);
+
+    cout<< "\n Number of coins for change of " << amount<< " : " << count;
+    cout<< "\n Coins : ";
+    for(int i=0; i<count; i++)
+    {
+        cout<< change[i]<< " ";
+    }
 }
