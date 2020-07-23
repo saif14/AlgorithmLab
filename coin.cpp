@@ -1,52 +1,37 @@
 //robiul islam
 // 191-15-2611
-#include <iostream>
+#include<bits/stdc++.h>
 
 using namespace std;
 
-int coins[] = { 1,5,10,25,100 };
+int max(int a, int b) { return (a > b) ? a : b; }
 
-//This function finds the maximum number of coin by selecting the best choice at hand
-int findMaxCoin(int amount, int size){
-    for(int i=0; i<size; i++){
-        if(amount < coins[i]) return i-1;
-    }
-    return -1;
+int knapSack(int bagMaxWeight, int itemWeight[], int itemValue[], int n)
+{
+
+    if (n == 0 || bagMaxWeight == 0)
+        return 0;
+
+    if (itemWeight[n - 1] > bagMaxWeight)
+        return knapSack(bagMaxWeight, itemWeight, itemValue, n - 1);
+
+    else
+        return max(
+            itemValue[n - 1] + knapSack(bagMaxWeight - itemWeight[n - 1],
+                                   itemWeight, itemValue, n - 1),
+            knapSack(bagMaxWeight, itemWeight, itemValue, n - 1));
 }
 
-//This the greedy approach implementation.
-//This finds the selected coins to fulfill an amount
-int GreedyApproachCoinChagne(int amount, int change[]){
+int main()
+{
+   int itemWeight[4] = {2,3,4,5};
+   int itemValue[4] = {3,4,5,6};
+   int bagMaxWeight = 6;
 
-    int numOfCoins = sizeof(coins)/sizeof(coins[0]);
-    int count = 0;
-    while (amount){//impelemnt the loop condition){
-        int k = findMaxCoin(amount, numOfCoins);
-        if(k == -1)
-            cout<< "\n No solution ";
-            //printf("No solution");
-                //implement your code
-                //implement what should it print if solution found
-
-        else{
-            amount-=coins[k];
-        change[count++]=coins[k];
-                //Implement your code to minus a coin from the total amount. If total amount is 60 and a coin chosen is 15 then it will be 60-15 = 45
-                // Implement your code to save this coin in the array name 'change'
-            }
-    }
-    return count;
-}
-
-int main(void) {
-    int change[10]; // This needs to be dynamic
-    int amount = 34;
-    int count = GreedyApproachCoinChagne(amount, change);
-
-    cout<< "\n Number of coins for change of " << amount<< " : " << count;
-    cout<< "\n Coins : ";
-    for(int i=0; i<count; i++)
-    {
-        cout<< change[i]<< " ";
-    }
+   //implement your code
+   //you may use your own defined function
+   //print out the table filled up with values as I have demonstrated in the class
+int n = sizeof(itemValue) / sizeof(itemValue[0]);
+    cout << knapSack(bagMaxWeight, itemWeight, itemValue, n);
+    return 0;
 }
