@@ -1,28 +1,40 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
-int max(int a, int b) { return (a > b) ? a : b; }
-
-int knapSack(int bagMaxWeight, int itemWeight[], int itemValue[], int n)
+int knapSack(int W, int wt[], int val[], int n)
 {
-
-    if (n == 0 || bagMaxWeight == 0)
-        return 0;
-
-    if (itemWeight[n - 1] > bagMaxWeight)
-        return knapSack(bagMaxWeight, itemWeight, itemValue, n - 1);
-
-    else
-        return max(
-            itemValue[n - 1] + knapSack(bagMaxWeight - itemWeight[n - 1],
-                                   itemWeight, itemValue, n - 1),
-            knapSack(bagMaxWeight, itemWeight, itemValue, n - 1));
+    int i, w;
+    int K[n + 1][W + 1];
+    for (i = 0; i <= n; i++)
+    {
+        for (w = 0; w < W; w++)
+        {
+            if (i == 0 || w == 0)
+                K[i][w] = 0;
+            else if (wt[i-1] <=w)
+            {
+                K[i][w] = max( val[i - 1] + K[i - 1][w - wt[i - 1]],K[i - 1][w]);
+            }
+            else
+            {
+                K[i][w] = K[i - 1][w];
+            }
+            printf("%d    ",K[i][w]);
+        }
+        printf("\n")     ;
+    }
+    return K[n][W-1];
+}
+int max(int a, int b)
+{
+(a>b)?a:b;
 }
 int main()
 {
-   int itemWeight[4] = {2,3,4,5};
-   int itemValue[4] = {3,4,5,6};
-   int bagMaxWeight = 6;
-    int n = sizeof(itemValue) / sizeof(itemValue[0]);
-    cout << knapSack(bagMaxWeight, itemWeight, itemValue, n);
+    int weight[] = { 2,3,4,5 };
+    int value[] = { 3,4,5,6 };
+    int MaxWeight = 6;
+    int Size = sizeof(value) / sizeof(value[0]);
+    int highest=knapSack(MaxWeight, weight, value, Size);
+    cout<<"The max possible value  is "<<highest<<endl;
     return 0;
 }
